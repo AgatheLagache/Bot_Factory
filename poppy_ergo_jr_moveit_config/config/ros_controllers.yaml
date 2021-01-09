@@ -1,0 +1,112 @@
+ergo_jr:
+  # Publish all joint states -----------------------------------
+  joint_state_controller:
+    type: joint_state_controller/JointStateController
+    publish_rate: 50
+
+  arm_controller:
+    type: effort_controllers/JointTrajectoryController
+    joints:
+      - m1
+      - m2
+      - m3
+      - m4
+      - m5
+      # - m6
+    gains:
+     m1: {p: 50.0, i: 0.000, d: 0.0, i_clamp: 1}
+     m2: {p: 50.0, i: 0.000, d: 0.0, i_clamp: 1}
+     m3: {p: 50.0, i: 0.000, d: 0.0, i_clamp: 1}
+     m4: {p: 50.0, i: 0.000, d: 0.0, i_clamp: 1}
+     m5: {p: 50.0, i: 0.000, d: 0.0, i_clamp: 1}
+     # m6: {p: 20.0, i: 0.000, d: 0.0, i_clamp: 1}
+
+    constraints:
+      goal_time: 0.5                   # Override default
+      stopped_velocity_tolerance: 0.5 # Override default
+      # m1:
+      #   trajectory: 0.5               # Not enforced if unspecified
+      #   goal: 0.5                     # Not enforced if unspecified
+      # m2:
+      #   trajectory: 0.5               # Not enforced if unspecified
+      #   goal: 0.5                     # Not enforced if unspecified
+      # m3:
+      #   trajectory: 0.5               # Not enforced if unspecified
+      #   goal: 0.5                     # Not enforced if unspecified
+      # m4:
+      #   trajectory: 0.5               # Not enforced if unspecified
+      #   goal: 0.5                     # Not enforced if unspecified
+      # m5:
+      #   trajectory: 0.5               # Not enforced if unspecified
+      #   goal: 0.5                     # Not enforced if unspecified
+
+
+  arm_and_finger_controller:
+    type: effort_controllers/JointTrajectoryController
+    joints:
+      - m1
+      - m2
+      - m3
+      - m4
+      - m5
+      - m6
+    gains:
+     m1: {p: 50.0, i: 0.000, d: 0.0, i_clamp: 1}
+     m2: {p: 50.0, i: 0.000, d: 0.0, i_clamp: 1}
+     m3: {p: 50.0, i: 0.000, d: 0.0, i_clamp: 1}
+     m4: {p: 50.0, i: 0.000, d: 0.0, i_clamp: 1}
+     m5: {p: 50.0, i: 0.000, d: 0.0, i_clamp: 1}
+     m6: {p: 50.0, i: 0.000, d: 0.0, i_clamp: 1}
+
+
+  # Position Controllers ---------------------------------------
+  m1_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: m1
+    pid: {p: 50.0, i: 0.001, d: 1.0, i_clamp: 1}
+  m2_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: m2
+    pid: {p: 50.0, i: 0.001, d: 1.0, i_clamp: 1}
+  m3_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: m3
+    pid: {p: 50.0, i: 0.001, d: 1.0, i_clamp: 1}
+  m4_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: m4
+    pid: {p: 50.0, i: 0.001, d: 1.0, i_clamp: 1}
+  m5_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: m5
+    pid: {p: 50.0, i: 0.001, d: 1.0, i_clamp: 1}
+  m6_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: m6
+    pid: {p: 50.0, i: 0.001, d: 1.0, i_clamp: 1}
+
+
+
+controller_list:
+  - name: "ergo_jr/arm_controller"
+    action_ns: follow_joint_trajectory
+    type: FollowJointTrajectory
+    default: true
+    joints:
+      - m1
+      - m2
+      - m3
+      - m4
+      - m5
+
+  - name: "ergo_jr/arm_and_finger_controller"
+    action_ns: follow_joint_trajectory
+    type: FollowJointTrajectory
+    default: true
+    joints:
+      - m1
+      - m2
+      - m3
+      - m4
+      - m5
+      - m6
