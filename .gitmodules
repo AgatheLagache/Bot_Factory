@@ -1,0 +1,3 @@
+[submodule "src/poppy_msgs"]
+	path = src/poppy_msgs
+	url = https://github.com/ymollard/poppy_msgs.git
