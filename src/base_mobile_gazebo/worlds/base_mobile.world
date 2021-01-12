@@ -1,0 +1,21 @@
+<?xml version="1.0" ?>
+<sdf version="1.5">
+  <world name="default">
+    <!-- A global light source -->
+    <include>
+      <uri>model://sun</uri>
+    </include>
+    <!-- A ground plane -->
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+    
+    <model name="base_mobile">
+      <include>
+        <uri>model://my_mobile_base</uri>
+      </include>
+    </model>
+
+    <plugin name="steering_4wd_plugin" filename="libsteering_4wd_plugin.so"/>
+  </world>
+</sdf>
