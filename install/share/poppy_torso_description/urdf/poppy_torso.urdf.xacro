@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="poppy_torso">
+  <!-- Properties -->
+  <xacro:property name="namespace" value="poppy_torso" />
+
+<xacro:if value="$(arg fixed)">
+<link name="world"/>
+  <joint name="fixed" type="fixed">
+    <parent link="world"/>
+    <child link="base_link"/>
+  </joint>
+</xacro:if>
+ <link name="base_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://poppy_torso_description/meshes/base_visual.STL" />
+      </geometry>    
+    </visual>
+    <xacro:if value="${is_fixed == 'false'}">
+    <inertial>
+      <mass value="0.304441048219244" />
+      <inertia ixx="0.000444379589701896" iyy="0.00048561348802354" izz="0.000421911604661064" ixy="1.65486746667917E-08" ixz="-3.86276516415689E-09" iyz="2.15649474149961E-05" />
+    </inertial>
+    </xacro:if>
+  </link>
+  
+</robot>
