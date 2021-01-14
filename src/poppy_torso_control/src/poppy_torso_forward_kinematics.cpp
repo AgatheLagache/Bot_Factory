@@ -59,7 +59,7 @@ int main(int argc, char** argv)
   ros::NodeHandle n;
   
 
-  robot_model_loader::RobotModelLoader robot_model_loader("robot_description");
+  robot_model_loader::RobotModelLoader robot_model_loader("robot_description_torso");
   robot_model::RobotModelPtr kinematic_model = robot_model_loader.getModel();
   ROS_INFO("Model frame: %s", kinematic_model->getModelFrame().c_str());
   robot_state::RobotStatePtr kinematic_state(new robot_state::RobotState(kinematic_model));

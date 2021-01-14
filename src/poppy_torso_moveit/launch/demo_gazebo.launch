@@ -33,7 +33,7 @@
 
   <!-- Load the URDF, SRDF and other .yaml configuration files on the param server -->
   <include file="$(find poppy_torso_moveit)/launch/planning_context.launch">
-    <arg name="load_robot_description" value="false"/>
+    <arg name="load_robot_description_torso" value="false"/>
   </include>
 
   <!-- If needed, broadcast static tf for robot root -->

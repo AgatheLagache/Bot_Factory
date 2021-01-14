@@ -145,7 +145,7 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
       Name: RobotModel
-      Robot Description: robot_description
+      Robot Description: robot_description_torso
       TF Prefix: ""
       Update Interval: 0
       Value: true

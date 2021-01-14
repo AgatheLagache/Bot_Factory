@@ -6,7 +6,7 @@
     default="True" />
 
   <param
-    name="robot_description"
+    name="robot_description_torso"
     textfile="$(find poppy_torso_description)/urdf/Poppy_Torso.URDF" />
   <param
     name="use_gui"

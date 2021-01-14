@@ -4,7 +4,7 @@
 
       <!-- Choose one of these available end effectors -->
       
-      <param name="robot_description" command="$(find xacro)/xacro $(find poppy_torso_description)/urdf/poppy_torso.urdf.xacro" />
+      <param name="robot_description_torso" command="$(find xacro)/xacro $(find poppy_torso_description)/urdf/poppy_torso.urdf.xacro" />
       <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" unless="$(arg gui)"/>
       <node name="joint_state_publisher" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui" if="$(arg gui)"/>
       <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />

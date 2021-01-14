@@ -80,14 +80,14 @@ int main(int argc, char** argv)
 
   ros::Subscriber sub = n.subscribe("/joint_states", 1, jointStatesCallback);
 
-  robot_model_loader::RobotModelLoader robot_model_loader("robot_description");
+  robot_model_loader::RobotModelLoader robot_model_loader("robot_description_torso");
   robot_model::RobotModelPtr kinematic_model = robot_model_loader.getModel();
   planning_scene_ptr = new planning_scene::PlanningScene(kinematic_model);
 
   current_state = new robot_state::RobotState(planning_scene_ptr->getCurrentState());
   // current_state = planning_scene_ptr->getCurrentState();
 
-  planning_scene_monitor::PlanningSceneMonitorPtr planning_scene_monitor_ptr = std::make_shared<planning_scene_monitor::PlanningSceneMonitor>("robot_description");
+  planning_scene_monitor::PlanningSceneMonitorPtr planning_scene_monitor_ptr = std::make_shared<planning_scene_monitor::PlanningSceneMonitor>("robot_description_torso");
   acm = planning_scene_monitor_ptr->getPlanningScene()->getAllowedCollisionMatrixNonConst();
   for(std::string link1: no_col_links)
     for(std::string link2: no_col_links)
