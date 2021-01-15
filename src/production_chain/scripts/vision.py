@@ -39,23 +39,34 @@ class NodeVision(object):
 
     def find_figurine(self,img):
         # ICI le traitement OpenCV
+        #tableau de tableau format : ["pays", hue, saturation, value]
+        countries = [['JAPON', 32, 255, 145],['ANGLETERRE', 149, 255, 102],['FRANCE', 59, 255, 128],['ALLEMAGNE', 0, 255, 128]]
         img_HSV = cv.cvtColor(img, cv.COLOR_BGR2HSV)
-        img_seuil = cv.inRange(img_HSV, (100, 200, 50), (143, 255, 100)) #BLEU
-        cv.imwrite("seuil.png", img_seuil)
-        contours, hierarchy = cv.findContours(img_seuil, cv.RETR_EXTERNAL, cv.CHAIN_APPROX_SIMPLE)
-        
-        cv.drawContours(img, contours, 0, (0,255,0), 3)
-        cv.imwrite("contours.png", img)
-        # retour du résultat
+        area = 'none'
         resp = TriggerResponse()
-        # Si pas de figurine
-        if len(contours) <= 0:
-        	resp.success = False
-        # Sinon
-        else:
+        for country in countries:
+        	img_seuil = cv.inRange(img_HSV, (country[1]-20, country[2]-50, country[3]-50), (country[1]+10, country[2]+10, country[3]+10))
+        	contours, hierarchy = cv.findContours(img_seuil, cv.RETR_EXTERNAL, cv.CHAIN_APPROX_SIMPLE)
+        	
         	resp.success = True
-        	resp.message="COULEUR"
-        return resp
+        	if len(contours) <= 0:
+        		area = 'none'
+        		resp.message += str(country[0])+','+str(area)+';'
+        	else:
+        		for c in contours:
+        			(x, y, w, h) = cv.boundingRect(c)
+        			minRect = cv.minAreaRect(c)
+        			M = cv.moments(c)
+        			cX = int(M["m10"] / M["m00"])	
+        			if cX <= 267:
+        				area = 1
+        			elif cX >= 268 and cX <= 535:
+        				area = 2
+        			elif cX >= 536:
+        				area = 3
+        			resp.message += str(country[0])+','+str(area)+';'
+        return resp	
+
 
     def handle_figurine(self, req):
         #Méthode callback qui sera éxécutée à chaque appel du service
