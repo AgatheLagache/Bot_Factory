@@ -25,4 +25,11 @@
   <node name="figurine_spawner2" pkg="production_chain" type="spawn_figurines.py" respawn="false" output="screen" args="'figurine2' 0.2 -0.5 0.5 0.0 0.0 0.0 0.075 'world' 'Yellow'"/>
 
   <node name="figurine_spawner3" pkg="production_chain" type="spawn_figurines.py" respawn="false" output="screen" args="'figurine3' -0.2 -0.5 0.5 0.0 0.0 0.0 0.075 'world' 'Green'"/>
+  
+  <include file="$(find poppy_ergo_jr_gazebo)/launch/start_gazebo.launch">
+  </include>
+  <!--
+  <include file="$(find poppy_torso_gazebo)/launch/start_gazebo.launch">
+  </include>
+  -->
 </launch>

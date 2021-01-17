@@ -7,9 +7,9 @@
     <include>
       <uri>model://sun</uri>
     </include>
-    <include>
+<!--    <include>
       <uri>model://test_zone</uri>
-    </include>
+    </include> -->
     <include>
       <uri>model://cafe_table</uri>
       <name>table1</name>
@@ -23,6 +23,10 @@
     <include>
       <uri>model://demo_cube</uri>
       <pose>3.8 3.15 0.83 0 0 0</pose>
+    </include>
+    <include>
+      <uri>model://production_zones_static</uri>
+       <pose>0 0 -0.0198 0 0 0</pose>
     </include>
   </world>
 </sdf>

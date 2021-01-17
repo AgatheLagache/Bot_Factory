@@ -6,3 +6,11 @@ cd Bot_Factory
 git submodule init
 git submodule update
 ```
+
+Setup workspace
+
+```sh
+catkin_make
+source devel/setp.bash
+export GAZEBO_MODEL_PATH="${GAZEBO_MODEL_PATH}:/home/martin/Bot_Factory/src/production_chain/models/"
+```

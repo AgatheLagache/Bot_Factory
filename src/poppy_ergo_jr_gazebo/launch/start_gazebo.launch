@@ -5,19 +5,20 @@
   <arg name="traj" default="true"/>
 
   <!-- startup simulated world -->
+  <!--
   <include file="$(find poppy_ergo_jr_gazebo)/launch/empty_world.launch">
     <arg name="world_name" default="worlds/empty.world"/>
     <arg name="paused" value="$(arg paused)"/>
     <arg name="gui" value="$(arg gazebo_gui)"/>
     <arg name="verbose" value="true"/>
   </include>
-
+-->
   <!-- send robot urdf to param server -->
 
 
   <include file="$(find poppy_ergo_jr_gazebo)/launch/load_ergo_model.launch">
-    <arg name="gripper" value="$(arg gripper)"/>
-    <arg name="lamp" value="$(arg lamp)"/>
+    <arg name="gripper" value="true"/>
+    <!--<arg name="lamp" value="$(arg lamp)"/>-->
   </include>
 
 <group if="$(arg traj)">
