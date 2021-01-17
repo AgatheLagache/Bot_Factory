@@ -18,7 +18,7 @@
 
   <include file="$(find poppy_ergo_jr_gazebo)/launch/load_ergo_model.launch">
     <arg name="gripper" value="true"/>
-    <!--<arg name="lamp" value="$(arg lamp)"/>-->
+    <arg name="lamp" value="false"/>
   </include>
 
 <group if="$(arg traj)">
