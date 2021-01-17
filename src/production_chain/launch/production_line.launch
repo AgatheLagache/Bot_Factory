@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+
+<!--
+<launch>
+  <group name="pl">
+    <include file="$(find pr2_alpha)/$(env ROBOT).machine" />
+    <include file="$(find 2dnav_pr2)/config/new_amcl_node.xml" />
+  </group>
+</launch>
+-->
+
+<launch>
+  <!-- We resume the logic in empty_world.launch, changing only the name of the world to be launched -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(find production_chain)/worlds/test_zone.world"/> <!-- Note: the world_name is with respect to GAZEBO_RESOURCE_PATH environmental variable -->
+    <arg name="paused" value="false"/>
+    <arg name="use_sim_time" value="true"/>
+    <arg name="gui" value="true"/>
+    <arg name="recording" value="false"/>
+    <arg name="debug" value="false"/>
+  </include>
+  
+  <node name="figurine_spawner1" pkg="production_chain" type="spawn_figurines.py" respawn="false" output="screen" args="'figurine1' 0.0 -0.5 0.5 0.0 0.0 0.0 0.075 'world' 'Red'"/>
+
+  <node name="figurine_spawner2" pkg="production_chain" type="spawn_figurines.py" respawn="false" output="screen" args="'figurine2' 0.2 -0.5 0.5 0.0 0.0 0.0 0.075 'world' 'Yellow'"/>
+
+  <node name="figurine_spawner3" pkg="production_chain" type="spawn_figurines.py" respawn="false" output="screen" args="'figurine3' -0.2 -0.5 0.5 0.0 0.0 0.0 0.075 'world' 'Green'"/>
+</launch>
