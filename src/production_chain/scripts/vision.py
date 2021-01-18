@@ -78,7 +78,7 @@ class NodeVision(object):
     def find_parts(self,img):
     	#tableau de tableau format : ["pays", hue, saturation, value]
     	countries = [['JAPON', 32, 255, 145],['ANGLETERRE', 149, 255, 102],['FRANCE', 59, 255, 128],['ALLEMAGNE', 0, 255, 128]]
-    	#tableau de tableau format : ["pièce"]
+    	#tableau de tableau format : ["n° zone", "pièce", x_min zone, x_max zone]
     	areas = [["z1","HEAD", 0, 267], ["z2","CHEST", 268, 535], ["z3","LEGS", 536, 800]]
     	#Méthode comparant la vision caméra avec des images des différentes pièces des figurines
     	resp = TriggerResponse()
@@ -99,7 +99,30 @@ class NodeVision(object):
     				if ret <= 0.01:
     					resp.success = True
     					resp.message += str(area[1])+','+str(area[0])+';'
-    	return resp			
+    	return resp
+    	
+    def check_figurine(self, img):
+    	#tableau de tableau format : ["pays", hue, saturation, value]
+    	countries = [['JAPON', 32, 255, 145],['ANGLETERRE', 149, 255, 102],['FRANCE', 59, 255, 128],['ALLEMAGNE', 0, 255, 128]]
+    	#Méthode comparant la vision caméra avec une image de la figurine montée
+    	resp = TriggerResponse()
+    	resp.success = False
+    	img_HSV = cv.cvtColor(img, cv.COLOR_BGR2HSV)
+    	
+    	for country in countries:
+    		img_seuil = cv.inRange(img_HSV, (country[1]-20, country[2]-50, country[3]-50), (country[1]+10, country[2]+10, country[3]+10))
+    		contours, hierarchy = cv.findContours(img_seuil, cv.RETR_EXTERNAL, cv.CHAIN_APPROX_SIMPLE)
+    		if len(contours) > 0:
+    			cnt = contours[0]
+    			reference_base = cv.imread("REFERENCE/figurine.png", cv.IMREAD_GRAYSCALE)
+    			contours_ref, hierarchy_ref = cv.findContours(reference_base, cv.RETR_EXTERNAL, cv.CHAIN_APPROX_SIMPLE)
+    			cnt_ref = contours_ref[0]
+    			ret = cv.matchShapes(cnt,cnt_ref,1,0.0)
+    			if ret <= 0.05:
+    				resp.success = True
+    				resp.message = "OK"
+    	return resp
+    	
 
     def handle_figurine(self, req):
         #Méthode callback qui sera éxécutée à chaque appel du service
