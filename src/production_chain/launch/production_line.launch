@@ -12,7 +12,7 @@
 <launch>
 
   <arg name="torso" default="false"/>
-  <arg name="ergo" default="false"/>
+  <arg name="ergo" default="true"/>
   <arg name="mb" default="false"/> <!-- mobile base -->
   
   <!-- We resume the logic in empty_world.launch, changing only the name of the world to be launched -->
@@ -37,13 +37,13 @@
   <!--</include> -->
 
  
-<group>
+<group np="ergo" if="$(arg ergo)">
   <include file="$(find poppy_ergo_jr_gazebo)/launch/start_gazebo.launch">
   </include>
 </group>  
 
  
-<group>
+<group np="torso" if="$(arg torso)">
   <include file="$(find poppy_torso_gazebo)/launch/poppy_torso_gazebo_trajectory.launch">
   </include>
 </group>
