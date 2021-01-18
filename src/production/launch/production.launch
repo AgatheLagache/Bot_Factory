@@ -1,0 +1,12 @@
+<launch>
+	<group ns="torso">
+		<param name="tf_prefix" value="torso_tf" />
+		<include file="$(find production)/launch/torso.launch" />
+	</group>
+
+	<group ns="ergo">
+		<param name="tf_prefix" value="ergo_tf" />
+		<include file="$(find production)/launch/ergo_jr.launch" />
+	</group>
+</launch>
+
