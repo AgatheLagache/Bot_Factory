@@ -3,6 +3,7 @@
 		<arg name="x" value="1.0" />
 		<arg name="y" value="0.5" />
 	</include>
+
 	<include file="$(find poppy_torso_moveit)/launch/moveit_planning_execution.launch" />
 	<include file="$(find poppy_torso_control)/launch/poppy_torso_control.launch" />
 </launch>
