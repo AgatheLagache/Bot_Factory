@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <robot name="Poppy_Torso">
+<link name="world"/>
+<joint name="fixed" type="fixed">
+        <parent link="world"/>
+        <child link="base"/>
+    </joint>
 	<link name="base">
 		<inertial>
 			<origin xyz="-9.74926801495556E-06 0.0245809270022031 -0.0126310576435619" rpy="0 0 0"></origin>
@@ -305,18 +310,41 @@
 			<inertia ixx="0.000185805096233415" ixy="-7.3225450436654E-06" ixz="9.10153472751173E-08" iyy="1.51060270748784E-05" iyz="-1.35866305828973E-05" izz="0.000182748555542486"></inertia>
 		</inertial>
 		<visual>
-			<origin xyz="0 0 0" rpy="0 0 0"></origin>
+			<origin xyz="0 0 0" rpy="-1.57 0 -1.57"></origin>
 			<geometry>
-				<mesh filename="package://poppy_torso_description/meshes/r_forearm_visual.STL"></mesh>
+				<mesh filename="package://poppy_torso_description/meshes/forearm_grip_visual.STL"></mesh>
 			</geometry>
 			<material name="">
 				<color rgba="0.9 0.9 0.9 1.0"></color>
 			</material>
 		</visual>
 		<collision>
-			<origin xyz="0 0 0" rpy="0 0 0"></origin>
+			<origin xyz="0 0 0" rpy="-3.14 0 0"></origin>
 			<geometry>
-				<mesh filename="package://poppy_torso_description/meshes/r_forearm_respondable.STL"></mesh>
+				<mesh filename="package://poppy_torso_description/meshes/forearm_grip_respondable.STL"></mesh>
+			</geometry>
+		</collision>
+		<mass>0.04863</mass>
+	</link>
+	<link name="r_gripper">
+		<inertial>
+			<origin xyz="-0.00691618587524222 0.107157908858058 0.00498983982891094" rpy="0 0 0"></origin>
+			<mass value="0.0486511084909604"></mass>
+			<inertia ixx="0.000185805096233415" ixy="-7.3225450436654E-06" ixz="9.10153472751173E-08" iyy="1.51060270748784E-05" iyz="-1.35866305828973E-05" izz="0.000182748555542486"></inertia>
+		</inertial>
+		<visual>
+			<origin xyz="-0.0075 0 0" rpy="1.57 3.14 -1.57"></origin>
+			<geometry>
+				<mesh filename="package://poppy_torso_description/meshes/gripper_jaw_visual.STL"></mesh>
+			</geometry>
+			<material name="">
+				<color rgba="0.9 0.9 0.9 1.0"></color>
+			</material>
+		</visual>
+		<collision>
+			<origin xyz="-0.0075 0 0" rpy="1.57 3.14 -1.57"></origin>
+			<geometry>
+				<mesh filename="package://poppy_torso_description/meshes/gripper_jaw_respondable.STL"></mesh>
 			</geometry>
 		</collision>
 		<mass>0.04863</mass>
@@ -412,4 +440,12 @@
 		<axis xyz="-1 0 0"></axis>
 		<limit effort="3.1" lower="-0.0174532925199" upper="2.58308729295" velocity="7.0"></limit>
 	</joint>
+	<joint name="r_gripper_y" type="revolute">
+		<origin xyz="0 0.11175 -0.01" rpy="0 0 0"></origin>
+		<parent link="r_forearm"></parent>
+		<child link="r_gripper"></child>
+		<axis xyz="-1 0 0"></axis>
+		<limit effort="3.1" lower="-0.0174532925199" upper="2.58308729295" velocity="7.0"></limit>
+	</joint>
 </robot>
+
