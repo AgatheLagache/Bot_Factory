@@ -1,0 +1,12 @@
+<launch>
+	<arg name="gripper" default="true" />
+	<arg name="lamp" default="false" />
+	
+	<include file="$(find poppy_ergo_jr_gazebo)/launch/load_ergo_model.launch">
+		<arg name="gripper" value="$(arg gripper)"/>
+		<arg name="lamp" value="$(arg lamp)"/>
+	</include>
+
+	<include file="$(find poppy_ergo_jr_gazebo)/launch/load_ergo_controllers.launch" />
+</launch>
+

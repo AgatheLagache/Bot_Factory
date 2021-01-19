@@ -6,6 +6,8 @@
   <arg name="gui" default="true"/>
   <arg name="headless" default="false"/>
   <arg name="debug" default="false"/>
+  <arg name="x" default="0.0" />
+  <arg name="y" default="0.0" />
 
   <!-- We resume the logic in empty_world.launch, changing only the name of the world to be launched -->
   <!-- <include file="$(find gazebo_ros)/launch/empty_world.launch">
@@ -22,5 +24,6 @@
   <!-- Run a python script to the send a service call to gazebo_ros to spawn a URDF robot -->
   <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
   args="-urdf -z 0.0 -x -0.33 -y -0.24 -Y -2.5 -model poppy_torso -param robot_description_torso"/>
+
 
 </launch>

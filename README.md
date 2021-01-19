@@ -37,7 +37,6 @@ rosservice call /poppy_torso/parts_detection
 ```
 
 
-
 Lancer simulation
 ```sh
 export export GAZEBO_MODEL_PATH="${GAZEBO_MODEL_PATH}${HOME}/Bot_Factory/src/production_chain/models/:"
@@ -53,3 +52,16 @@ MoveIt Torso
 ```sh
 roslaunch production_chain torso_moveit.launch
 ```
+
+
+## Lancer l'ergo et le torso
+dans une première console :
+``sh
+roslaunch production torso.launch
+``
+
+Une fois le torso lancé, dans une deuxième console :
+``sh
+roslaunch production ergo_jr.launch
+``
+
