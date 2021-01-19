@@ -35,3 +35,18 @@ rosservice call /poppy_torso/figurine_detection
 ```sh
 rosservice call /poppy_torso/parts_detection
 ```
+
+Lancer simulation
+```sh
+roslaunch production_chain production_chain.launch
+```
+
+MoveIt Ergo
+```sh
+roslaunch poppy_ergo_jr_moveit_config start_moveit.launch 
+```
+
+MoveIt Torso
+```sh
+roslaunch production_chain 
+```
