@@ -36,8 +36,11 @@ rosservice call /poppy_torso/figurine_detection
 rosservice call /poppy_torso/parts_detection
 ```
 
+
+
 Lancer simulation
 ```sh
+export export GAZEBO_MODEL_PATH="${GAZEBO_MODEL_PATH}${HOME}/Bot_Factory/src/production_chain/models/:"
 roslaunch production_chain production_chain.launch
 ```
 
