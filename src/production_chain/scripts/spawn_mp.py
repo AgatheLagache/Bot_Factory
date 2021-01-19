@@ -100,7 +100,7 @@ def spawn_mps():
     frame = 'world'
     y = 0.12
     x = -0.17
-    z = 0.01
+    z = 0.06
 
     width = 0.02
     height = 0.02
