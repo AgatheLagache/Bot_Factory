@@ -1,0 +1,4 @@
+<launch>
+	<include file="$(find poppy_torso_moveit)/launch/moveit_planning_execution.launch" />
+	<include file="$(find poppy_torso_control)/launch/poppy_torso_control.launch" />
+</launch>
