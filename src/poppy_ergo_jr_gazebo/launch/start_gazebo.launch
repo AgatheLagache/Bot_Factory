@@ -12,7 +12,8 @@
     <arg name="gui" value="$(arg gazebo_gui)"/>
     <arg name="verbose" value="true"/>
   </include>
--->
+  -->
+
   <!-- send robot urdf to param server -->
 
 

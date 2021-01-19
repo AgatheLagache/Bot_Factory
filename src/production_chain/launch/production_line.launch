@@ -10,35 +10,51 @@
 -->
 
 <launch>
+
+  <arg name="torso" default="false"/>
+  <arg name="ergo" default="true"/>
+  <arg name="mb" default="false"/> <!-- mobile base -->
+  
   <!-- We resume the logic in empty_world.launch, changing only the name of the world to be launched -->
   <include file="$(find gazebo_ros)/launch/empty_world.launch">
-    <arg name="world_name" value="$(find production_chain)/worlds/test_zone.world"/> <!-- Note: the world_name is with respect to GAZEBO_RESOURCE_PATH environmental variable -->
+    <!-- <arg name="world_name" default="worlds/empty.world"/> -->
+    <arg name="world_name" value="$(find production_chain)/worlds/test_zone.world"/>
+    <!-- Note: the world_name is with respect to GAZEBO_RESOURCE_PATH environmental variable -->
     <arg name="paused" value="false"/>
     <arg name="use_sim_time" value="true"/>
     <arg name="gui" value="true"/>
     <arg name="recording" value="false"/>
     <arg name="debug" value="false"/>
+    <arg name="verbose" value="true"/>
   </include>
-  
-  <node name="figurine_spawner1" pkg="production_chain" type="spawn_figurines.py" respawn="false" output="screen" args="'figurine1' 0.0 -0.5 0.5 0.0 0.0 0.0 0.075 'world' 'Red'"/>
 
-  <node name="figurine_spawner2" pkg="production_chain" type="spawn_figurines.py" respawn="false" output="screen" args="'figurine2' 0.2 -0.5 0.5 0.0 0.0 0.0 0.075 'world' 'Yellow'"/>
 
-  <node name="figurine_spawner3" pkg="production_chain" type="spawn_figurines.py" respawn="false" output="screen" args="'figurine3' -0.2 -0.5 0.5 0.0 0.0 0.0 0.075 'world' 'Green'"/>
-  
-  <include file="$(find poppy_ergo_jr_gazebo)/launch/start_gazebo.launch">
-    <!-- <arg name="lamp" value="false"/>
-    <arg name="gripper" value="true"/> -->
-  </include>
+
   
   <!--<include file="$(find poppy_ergo_jr_moveit_config)/launch/start_moveit.launch"> -->
     <!-- <arg name="lamp" value="false"/>
     <arg name="gripper" value="true"/> -->
   <!--</include> -->
-  
-  <!--
-  <include file="$(find poppy_torso_gazebo)/launch/start_gazebo.launch">
+
+ 
+<group np="ergo" if="$(arg ergo)">
+  <include file="$(find poppy_ergo_jr_gazebo)/launch/start_gazebo.launch">
   </include>
-  -->
+</group>  
+
+ 
+<group np="torso" if="$(arg torso)">
+  <include file="$(find poppy_torso_gazebo)/launch/poppy_torso_gazebo_trajectory.launch">
+  </include>
+</group>
+ 
+
+  <!--  
+  <node name="figurine_spawner1" pkg="production_chain" type="spawn_figurines.py" respawn="false" output="screen" args="'figurine1' 0.0 -0.5 0.5 0.0 0.0 0.0 0.075 'world' 'Red'"/>
+
+  <node name="figurine_spawner2" pkg="production_chain" type="spawn_figurines.py" respawn="false" output="screen" args="'figurine2' 0.2 -0.5 0.5 0.0 0.0 0.0 0.075 'world' 'Yellow'"/>
+
+  <node name="figurine_spawner3" pkg="production_chain" type="spawn_figurines.py" respawn="false" output="screen" args="'figurine3' -0.2 -0.5 0.5 0.0 0.0 0.0 0.075 'world' 'Green'"/>
+-->
   
 </launch>
