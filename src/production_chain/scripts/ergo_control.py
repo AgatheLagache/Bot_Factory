@@ -10,14 +10,6 @@ import tf_conversions as transform
 from std_srvs.srv import SetBool
 from production_chain.srv import ErgoControl, ErgoControlResponse
 
-def close_gripper(close):
-	rospy.wait_for_service('/ergo_jr/close_gripper')
-	try:
-		closeGripper = rospy.ServiceProxy('/ergo_jr/close_gripper', SetBool)
-		return closeGripper(close)
-	except rospy.ServiceException as e:
-		print("Service call failed: %s"%e)
-
 def rotate_to(req):
 #	rospy.init_node('ergo_node')
 	print("\tgoing to z: %f degree: %f"%(req.z, req.degree))
