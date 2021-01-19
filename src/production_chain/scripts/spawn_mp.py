@@ -98,9 +98,9 @@ def spawn_mps():
 
     name = 'mp'
     frame = 'world'
-    x = 0.0
-    y = 0.0
-    z = 0.1
+    y = 0.12
+    x = -0.17
+    z = 0.01
 
     width = 0.02
     height = 0.02
@@ -108,18 +108,53 @@ def spawn_mps():
 
     roll = 0
     pitch = 0
-    yaw = 0
+    yaw = -45
 
     mass = 0.01
     colors = ['Blue', 'Red', 'Green', 'Purple']
     
+    
     for j in range(3):
-        i=0
-        for c in colors:
-            i+=1
-            nm = name + str(c) + str(j)
-            spawn(build_gz_figurine_req(nm, frame, x+(j/10), y+i/10, z, roll, pitch, yaw, width, height, depth, mass, color))
+    
+      zi = z
+    
+      if j == 2:
+        width = 0.01
+        height = 0.015
+        depth = 0.020
+      if j == 1:
+        width = 0.01
+        height = 0.01
+        depth = 0.01
+        zi -= 0.005
+      
+      for i in range(4):
+      
+        nm = name + colors[i] + str(j)
+        xi = x
+        yi = y
+        
+        if i == 0:
+          xi = x
+          yi = y
+        elif i == 1:
+          xi = x + 0.05
+          yi = y
+        elif i == 2:
+          xi = x
+          yi = y + 0.05 
+        else:
+          xi = x + 0.05
+          yi = y + 0.05
 
+        if j==1:
+          yi += 0.07
+
+        spawn(build_gz_figurine_req(nm, frame, xi, yi, zi, roll, pitch, yaw, width, height, depth, mass, colors[i]))
+
+      x+=0.15
+      yaw += 45
+        
 
     return 0
 
