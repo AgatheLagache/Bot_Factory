@@ -29,7 +29,7 @@ def build_gz_figurine_req(name, frame_id, x, y, z, roll, pitch, yaw, width, heig
 
     sdf = objectify.Element('sdf', version='1.4')
     sdf.model = objectify.Element('model', name=name)
-    sdf.model.static = 'true'
+    sdf.model.static = 'false'
     sdf.model.link = objectify.Element('link', name='link')
     sdf.model.link.inertial = objectify.Element('inertial')
     sdf.model.link.inertial.mass = mass
