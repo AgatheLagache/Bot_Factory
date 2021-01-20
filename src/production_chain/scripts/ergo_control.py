@@ -34,4 +34,3 @@ def rotate_to_server():
 
 if __name__ == "__main__":
 	rotate_to_server()
-
