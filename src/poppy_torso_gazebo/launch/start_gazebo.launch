@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<launch>
+
+  <arg name="paused" default="true"/>
+  <arg name="gazebo_gui" default="true"/>
+  <arg name="traj" default="true"/>
+
+  <!-- startup simulated world -->
+  <!--
+  <include file="$(find poppy_torso_gazebo)/launch/empty_world.launch">
+    <arg name="world_name" default="worlds/empty.world"/>
+    <arg name="paused" value="$(arg paused)"/>
+    <arg name="gui" value="$(arg gazebo_gui)"/>
+    <arg name="verbose" value="true"/>
+  </include>
+  -->
+
+  <!-- send robot urdf to param server -->
+
+
+  <include file="$(find poppy_torso_gazebo)/launch/load_torso_model.launch">
+    <!-- <arg name="gripper" value="$(arg gripper)"/>
+    <arg name="lamp" value="$(arg lamp)"/> -->
+  </include>
+
+<!--
+<group if="$(arg traj)">
+  <include file="$(find poppy_torso_gazebo)/launch/load_ergo_controllers.launch"/>
+</group>
+
+<group unless="$(arg traj)">
+  <include file="$(find poppy_torso_gazebo)/launch/load_ergo_position_controllers.launch"/>
+</group>
+-->
+
+
+</launch>

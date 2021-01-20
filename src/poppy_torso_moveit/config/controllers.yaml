@@ -1,0 +1,36 @@
+  controller_manager_ns: ''
+  controller_list:
+    - name: poppy_torso/r_arm_controller
+      action_ns: follow_joint_trajectory
+      type: FollowJointTrajectory
+      default: true
+      joints:
+        - r_shoulder_y
+        - r_shoulder_x
+        - r_arm_z
+        - r_elbow_y
+    - name: poppy_torso/l_arm_controller
+      action_ns: follow_joint_trajectory
+      type: FollowJointTrajectory
+      default: true
+      joints:
+        - l_shoulder_y
+        - l_shoulder_x
+        - l_arm_z
+        - l_elbow_y
+    - name: poppy_torso/head_controller
+      action_ns: follow_joint_trajectory
+      type: FollowJointTrajectory
+      default: true
+      joints:
+        - head_z
+        - head_y
+
+    - name: poppy_torso/torso_controller
+      action_ns: follow_joint_trajectory
+      type: FollowJointTrajectory
+      default: true
+      joints:
+        - abs_z
+        - bust_y
+        - bust_x

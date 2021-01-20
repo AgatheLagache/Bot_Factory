@@ -1,0 +1,16 @@
+<launch>
+    <arg name="x" default="0.0" />
+    <arg name="y" default="0.0" />
+
+    <!-- SIMULATOR -->
+    <include file="$(find poppy_torso_gazebo)/launch/poppy_torso_gazebo_sim.launch">
+        <arg name="paused" default="false"/>
+        <arg name="x" default="$(arg x)" />
+        <arg name="y" default="$(arg y)" />
+    </include>
+
+    <!-- CONTROLLERS -->
+    <include file="$(find poppy_torso_gazebo)/launch/poppy_torso_gazebo_control_trajectory.launch">
+    </include>
+
+</launch>

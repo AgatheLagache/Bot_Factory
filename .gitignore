@@ -1,6 +1,7 @@
 # ROS / Catkin
 .catkin_workspace
 devel/
+install/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
