@@ -1,4 +1,7 @@
 float64 z
-float64 degree
+float64 r
+float64 p
+float64 y
+float64 offset
 ---
 bool result

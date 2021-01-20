@@ -12,13 +12,12 @@ from production_chain.srv import ErgoControl, ErgoControlResponse
 
 def rotate_to(req):
 #	rospy.init_node('ergo_node')
-	print("\tgoing to z: %f degree: %f"%(req.z, req.degree))
+	print("\tgoing to z: %f yaw: %f offset: %f"%(req.z, req.y, req.offset))
 	commander = MoveGroupCommander("arm")
-	cube_offset = 0.21
 	pose = geometry_msgs.msg.Pose()
-	pose.orientation = Quaternion(*transform.transformations.quaternion_from_euler(0, 0, radians(req.degree)))
-	pose.position.x = cos(radians(req.degree - 90)) * cube_offset
-	pose.position.y = sin(radians(req.degree - 90)) * cube_offset
+	pose.orientation = Quaternion(*transform.transformations.quaternion_from_euler(radians(req.r), radians(req.p), radians(req.y)))
+	pose.position.x = cos(radians(req.y - 90)) * req.offset
+	pose.position.y = sin(radians(req.y - 90)) * req.offset
 	pose.position.z = req.z
 
 	commander.set_pose_target(pose)
@@ -34,3 +33,4 @@ def rotate_to_server():
 
 if __name__ == "__main__":
 	rotate_to_server()
+
