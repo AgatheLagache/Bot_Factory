@@ -37,13 +37,13 @@
   <!--</include> -->
 
  
-<group np="ergo" if="$(arg ergo)">
-  <include file="$(find poppy_ergo_jr_gazebo)/launch/start_gazebo.launch">
+<group ns="ergo">
+  <include file="$(find production_chain)/launch/poppy_ergo_jr.launch">
   </include>
 </group>  
 
  
-<group np="torso" if="$(arg torso)">
+<group ns="torso" if="$(arg torso)">
   <include file="$(find poppy_torso_gazebo)/launch/poppy_torso_gazebo_trajectory.launch">
   </include>
 </group>

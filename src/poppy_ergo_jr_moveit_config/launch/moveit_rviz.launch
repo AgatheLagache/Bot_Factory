@@ -1,5 +1,4 @@
 <launch>
-
   <arg name="debug" default="false" />
   <arg unless="$(arg debug)" name="launch_prefix" value="" />
   <arg     if="$(arg debug)" name="launch_prefix" value="gdb --ex run --args" />
@@ -12,5 +11,4 @@
 	args="$(arg command_args)" output="screen">
     <rosparam command="load" file="$(find poppy_ergo_jr_moveit_config)/config/kinematics.yaml"/>
   </node>
-
 </launch>
