@@ -191,7 +191,7 @@ class NodeVision(object):
     	return resp
     	
     def save_figurine_reference(self, req):
-	resp = TriggerResponse()
+    	resp = TriggerResponse()
     	resp.success = False
     	if self.image is not None:
     		img = self.image.copy()
