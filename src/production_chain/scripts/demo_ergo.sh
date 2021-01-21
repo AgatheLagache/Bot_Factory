@@ -1,0 +1,10 @@
+rosservice call /ergo_jr/close_gripper "data: false"
+rosservice call /ergo_control "{z: 0.1, r: 20.0, p: 0.0, y: 54.0, offset: 0.16}"
+rosservice call /ergo_control "{z: 0.028, r: 20.0, p: 0.0, y: 54.0, offset: 0.16}" #rosservice call /ergo_control "{z: 0.025, r: 10.0, p: 0.0, y: 54.0, offset: 0.18}"
+rosservice call /ergo_jr/close_gripper "data: true"
+rosservice call /ergo_control "{z: 0.08, r: 0.0, p: 0.0, y: 54.0, offset: 0.16}"
+rosservice call /ergo_control "{z: 0.08, r: 0.0, p: 0.0, y: 130.0, offset: 0.16}"
+rosservice call /ergo_control "{z: 0.03, r: 0.0, p: 0.0, y: 130.0, offset: 0.21}"
+rosservice call /ergo_jr/close_gripper "data: false"
+rosservice call /ergo_control "{z: 0.15, r: 0.0, p: 0.0, y: 0.0, offset: 0.15}"
+
