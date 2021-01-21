@@ -1,34 +1,36 @@
 #!/usr/bin/env python3
 
 import rospy
-from std_msgs.msg import String
+import time
 from moveit_commander.move_group import MoveGroupCommander
-from geometry_msgs.msg import Pose
+import geometry_msgs.msg
+from geometry_msgs.msg import Pose, Quaternion
 from math import radians, cos, sin
 import tf_conversions as transform
+from production_chain.srv import TorsoControl, TorsoControlResponse
 
-rospy.init_node("test_sub")
+def rotate_to(req):
+	commander = MoveGroupCommander(req.group)
+	pose = geometry_msgs.msg.Pose()
+	pose.orientation.x = req.r
+	pose.orientation.y = req.p
+	pose.orientation.z = req.yaw
+	pose.orientation.w = req.w
+	pose.position.x = req.x
+	pose.position.y = req.y
+	pose.position.z = req.z
 
-commander = MoveGroupCommander("r_arm")
-print(commander.get_current_pose().pose)
-cp = Pose()
+	commander.set_joint_value_target(pose, True)
+	plan = commander.go(wait=True)
+	commander.stop()
+	commander.clear_pose_targets()
+	return TorsoControlResponse(plan)
 
-cp.position.x = 0.000
-cp.position.y = -0.006
-cp.position.z = 0.273
+def rotate_to_server():
+	rospy.init_node('rotate_to__torso_server')
+	s = rospy.Service('torso_control', TorsoControl, rotate_to)
+	rospy.spin()
 
-cp.orientation.x = 0.7366
-cp.orientation.y = 0.0067
-cp.orientation.z = 0.0066
-cp.orientation.w = 0.6762
-
-#print(cp)
-
-#commander.set_orientation_target(cp.orientation)
-commander.set_joint_value_target(cp, True)
-
-#commander.set_pose_target(cp) #envoie la pose au commander
-plan = commander.go(wait=True) #éxécute le mouvement avec attente
-commander.stop() #force l'arrêt du mouvement pour plus de sécurité
-commander.clear_pose_targets() #force le nettoyage des objectifs du commander pour plus de sécurité
+if __name__ == "__main__":
+	rotate_to_server()
 

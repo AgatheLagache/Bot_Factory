@@ -52,6 +52,7 @@ find_package(catkin REQUIRED COMPONENTS std_msgs message_generation)
 add_service_files(
   FILES
   ErgoControl.srv
+  TorsoControl.srv
 )
 
 ## Generate actions in the 'action' folder
@@ -199,7 +200,7 @@ include_directories(
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
 
-catkin_install_python(PROGRAMS scripts/ergo_control.py
+catkin_install_python(PROGRAMS scripts/ergo_control.py scripts/torso_control.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 
