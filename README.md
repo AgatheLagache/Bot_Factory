@@ -7,6 +7,14 @@ git submodule init
 git submodule update
 ```
 
+Launch simulation mobile base:
+
+``sh
+roslaunch turtlebot3_gazebo turtlebot3_prod.launch
+export TURTLEBOT3_MODEL="burger" && roslaunch turtlebot3_teleop turtlebot3_teleop_key.launch
+``
+
+
 Pour la vision : 
 1. Lancer poppy torso ou poppy ergo dans gazebo avec :
 ```sh
