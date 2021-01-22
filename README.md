@@ -7,6 +7,9 @@ git submodule init
 git submodule update
 ```
 
+roslaunch production_chain production_line.launch ergo:=false torso:=true
+roslaunch production_chain torso_moveit.launch
+
 Pour la vision : 
 1. Lancer poppy torso ou poppy ergo dans gazebo avec :
 ```sh

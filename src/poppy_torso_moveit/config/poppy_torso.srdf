@@ -34,6 +34,12 @@
         <joint name="r_shoulder_x" value="1.8038" />
         <joint name="r_shoulder_y" value="-1.699" />
     </group_state>
+    <group_state name="r_arm_vision" group="r_arm">
+        <joint name="r_arm_z" value="-0.7995" />
+        <joint name="r_elbow_y" value="1.9047" />
+        <joint name="r_shoulder_x" value="1.1117" />
+        <joint name="r_shoulder_y" value="-0.275" />
+    </group_state>
     <group_state name="r_arm_expanded" group="r_arm">
         <joint name="r_arm_z" value="0" />
         <joint name="r_elbow_y" value="0" />
@@ -51,6 +57,18 @@
         <joint name="l_elbow_y" value="-1.5707" />
         <joint name="l_shoulder_x" value="1.5707" />
         <joint name="l_shoulder_y" value="1.5707" />
+    </group_state>
+    <group_state name="l_arm_WIP" group="l_arm">
+        <joint name="l_arm_z" value="-0.0002" />
+        <joint name="l_elbow_y" value="-1.45672" />
+        <joint name="l_shoulder_x" value="1.57076" />
+        <joint name="l_shoulder_y" value="1.45897" />
+    </group_state>
+    <group_state name="l_arm_place" group="l_arm">
+        <joint name="l_arm_z" value="0.00514" />
+        <joint name="l_elbow_y" value="-1.5707" />
+        <joint name="l_shoulder_x" value="1.56447" />
+        <joint name="l_shoulder_y" value="1.5690" />
     </group_state>
     <group_state name="l_arm_expanded" group="l_arm">
         <joint name="l_arm_z" value="0" />
@@ -71,6 +89,10 @@
     </group_state>
     <group_state name="hear_initial" group="head">
         <joint name="head_y" value="0" />
+        <joint name="head_z" value="0" />
+    </group_state>
+    <group_state name="hear_prod" group="head">
+        <joint name="head_y" value="-0.5" />
         <joint name="head_z" value="0" />
     </group_state>
     <!--END EFFECTOR: Purpose: Represent information about an end effector.-->

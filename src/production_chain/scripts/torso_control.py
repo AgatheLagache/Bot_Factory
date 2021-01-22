@@ -9,7 +9,7 @@ import tf_conversions as transform
 
 rospy.init_node("test_sub")
 
-commander = MoveGroupCommander("r_arm")
+commander = MoveGroupCommander("l_arm")
 print(commander.get_current_joint_values())
 cp = Pose()
 
@@ -28,7 +28,7 @@ joints = commander.get_current_joint_values()
 joints = [0,0,0,0]
 
 
-commander.set_joint_value_target(joints)
+#commander.set_joint_value_target(joints)
 #print(cp)
 
 #commander.set_orientation_target(cp.orientation)
