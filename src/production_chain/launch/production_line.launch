@@ -14,9 +14,10 @@
   <arg name="torso" default="false"/>
   <arg name="ergo" default="true"/>
   <arg name="mb" default="false"/> <!-- mobile base -->
+  <arg name="world" default="true"/>
   
   <!-- We resume the logic in empty_world.launch, changing only the name of the world to be launched -->
-  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+  <include if="$(arg world)" file="$(find gazebo_ros)/launch/empty_world.launch">
     <!-- <arg name="world_name" default="worlds/empty.world"/> -->
     <arg name="world_name" value="$(find production_chain)/worlds/test_zone.world"/>
     <!-- Note: the world_name is with respect to GAZEBO_RESOURCE_PATH environmental variable -->
