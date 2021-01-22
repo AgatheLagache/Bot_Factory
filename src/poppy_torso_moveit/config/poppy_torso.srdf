@@ -28,6 +28,12 @@
         <joint name="r_shoulder_x" value="1.5707" />
         <joint name="r_shoulder_y" value="-1.5707" />
     </group_state>
+    <group_state name="r_arm_WIP" group="r_arm">
+        <joint name="r_arm_z" value="1.1874" />
+        <joint name="r_elbow_y" value="1.8341" />
+        <joint name="r_shoulder_x" value="1.8038" />
+        <joint name="r_shoulder_y" value="-1.699" />
+    </group_state>
     <group_state name="r_arm_expanded" group="r_arm">
         <joint name="r_arm_z" value="0" />
         <joint name="r_elbow_y" value="0" />
