@@ -33,13 +33,25 @@ class NodeVision(object):
         rospy.Subscriber(
             root + path + '/image_raw', Image, self.callback)
 
-        # Création d'un service (on utilise le srv standard Trigger)
+        # Création d'un service pour trouver les destinations des figurines
         self.service_vision = rospy.Service(
             root + '/figurine_detection', Trigger, self.handle_figurine)
         
         # Création d'un service pour trouver les parties des figurines
         self.service_vision = rospy.Service(
             root + '/parts_detection', Trigger, self.stack_parts)
+            
+        # Création d'un service pour valider la figurine montée
+        self.service_vision = rospy.Service(
+            root + '/figurine_check', Trigger, self.validate_figurine)
+            
+        # Création d'un service pour sauvegarder les références pour les pièces
+        self.service_vision = rospy.Service(
+            root + '/calibrate_parts', Trigger, self.save_parts_reference)
+            
+        # Création d'un service pour sauvegarder la référence pour la figurine conforme
+        self.service_vision = rospy.Service(
+            root + '/calibrate_figurine', Trigger, self.save_figurine_reference)
 
     def find_figurine(self,img):
     	#tableau de tableau format : ["pays", hue, saturation, value]
@@ -151,8 +163,44 @@ class NodeVision(object):
             imgtmp = self.image.copy()
             # on appelle la méthode de traitement d'image
             resp = self.find_parts(imgtmp)
-
         return resp
+        
+    def validate_figurine(self, req):
+         resp = TriggerResponse()
+         resp.success = False
+         if self.image is not None:
+         	imgtmp = self.image.copy()
+         	# on appelle la méthode de traitement d'image
+         	resp = self.check_figurine(imgtmp)
+         return resp
+            
+    def save_parts_reference(self, req):
+    	areas = [["z1","HEAD", 0, 267], ["z2","CHEST", 268, 535], ["z3","LEGS", 536, 800]]
+    	resp = TriggerResponse()
+    	resp.success = False
+    	if self.image is not None:
+    		img = self.image.copy()
+    		img_HSV = cv.cvtColor(img, cv.COLOR_BGR2HSV)
+    		resp.success = True
+    		img_seuil = cv.inRange(img_HSV, (39, 205, 78), (69, 255, 138))
+    		for area in areas:
+    			area_visu = img_seuil[0:600, area[2]:area[3]]
+    			cv.imwrite("REFERENCE/"+area[0]+".png", area_visu)
+    			resp.message += area[0] + " "
+    		resp.message += "reference pictures saved."
+    	return resp
+    	
+    def save_figurine_reference(self, req):
+    	resp = TriggerResponse()
+    	resp.success = False
+    	if self.image is not None:
+    		img = self.image.copy()
+    		img_HSV = cv.cvtColor(img, cv.COLOR_BGR2HSV)
+    		img_seuil = cv.inRange(img_HSV, (39, 205, 78), (69, 255, 138))
+    		cv.imwrite("REFERENCE/figurine.png", img_seuil)
+    		resp.success = True
+    		resp.message = "Reference picture saved."
+    	return resp
 
     def callback(self, msg):
         #méthode callback qui sera éxécutée à chaque reception d'un message
